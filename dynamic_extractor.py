@@ -21,7 +21,7 @@ try:
     - "issuer" (Company name providing the invoice)
     - "invoice_number"
     - "date" (Format as YYYY-MM-DD if possible)
-    - "total_amount or total" (Number only, no currency symbols)
+    - "total_amount or total" (Number only,with decimal points, no currency symbols)
     - "tax_amount" (If not present, return null)
 
     If a field cannot be found, set its value to null. Do not include markdown or explanations.
@@ -35,7 +35,7 @@ try:
     # 4. Send to Local Ollama instance (e.g., Llama 3)
     print("Sending text to local LLM for dynamic parsing...")
     response = requests.post('http://localhost:11434/api/generate', json={
-        "model": "glm-ocr:q8_0",  # Ensure you have pulled this model via Ollama
+        "model": "granite4.1:3b",  # Ensure you have pulled this model via Ollama glm-ocr:q8_0
         "prompt": prompt,
         "format": "json",   # Forces the LLM to output valid JSON
         "stream": False
