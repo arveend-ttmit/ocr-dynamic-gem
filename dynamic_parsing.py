@@ -6,7 +6,7 @@ from invoice2data.input import pdftotext
 # 1. Setup Poppler Path
 poppler_bin_path = r"C:\Users\804748\poppler\poppler-26.02.0\Library\bin" # Adjust to your actual path
 os.environ["PATH"] += os.pathsep + poppler_bin_path
-pdf_path = r"C:\Users\804748\vsc\ocr-dynamic-gem\file\demo-invoice-no-tax-1.pdf"
+pdf_path = r"C:\Users\804748\vsc\ocr-dynamic-gem\file\demo-invoice-no-tax-2.pdf"
 
 def extract_dynamic_heuristics(text):
     data = {

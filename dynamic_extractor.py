@@ -6,7 +6,7 @@ from invoice2data.input import pdftotext
 # 1. Setup Poppler for pdftotext
 poppler_bin_path = r"C:\Users\804748\poppler\poppler-26.02.0\Library\bin"  # Adjust your path
 os.environ["PATH"] += os.pathsep + poppler_bin_path
-pdf_path = r"C:\Users\804748\vsc\ocr-dynamic-gem\file\demo-invoice-no-tax-1.pdf"
+pdf_path = r"C:\Users\804748\vsc\ocr-dynamic-gem\file\sample.pdf"
 
 try:
     # 2. Extract Raw Text using pdftotext
@@ -19,7 +19,7 @@ try:
     You are a data extraction AI. Extract the core billing details from the invoice text below.
     Return ONLY a valid JSON object using exactly these keys:
     - "issuer" (Company name providing the invoice)
-    - "invoice_number"
+    - "invoice_number" (Alphanumeric string, may include dashes, invoice number)
     - "date" (Format as YYYY-MM-DD if possible)
     - "total_amount or total" (Number only,with decimal points, no currency symbols)
     - "tax_amount" (If not present, return null)
@@ -35,7 +35,7 @@ try:
     # 4. Send to Local Ollama instance (e.g., Llama 3)
     print("Sending text to local LLM for dynamic parsing...")
     response = requests.post('http://localhost:11434/api/generate', json={
-        "model": "granite4.1:3b",  # Ensure you have pulled this model via Ollama glm-ocr:q8_0
+        "model": "gemma4:latest",  # E glm-ocr:q8_0
         "prompt": prompt,
         "format": "json",   # Forces the LLM to output valid JSON
         "stream": False
